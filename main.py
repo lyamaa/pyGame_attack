@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # Initialize the pygame
 pygame.init()
@@ -19,9 +20,20 @@ playerY = 480
 playerX_change = 0
 playerY_change = 0
 
+# Enemy
+enemyImg = pygame.image.load("img/cthulhu.png")
+enemyX = random.randint(0, 800)
+enemyY = random.randint(10, 150)
+enemyX_change = 0
+enemyY_change = 0
+
 
 def player(x, y):
     screen.blit(playerImg, (x, y))
+
+
+def enemy(x, y):
+    screen.blit(enemyImg, (x, y))
 
 
 # GAME LOOP
@@ -54,4 +66,5 @@ while running:
         playerX = 736
     playerY += playerY_change
     player(playerX, playerY)
+    enemy(enemyX, enemyY)
     pygame.display.update()
