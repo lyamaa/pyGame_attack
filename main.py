@@ -48,6 +48,7 @@ def enemy(x, y):
     screen.blit(enemyImg, (x, y))
 
 
+# Bullet State
 def bullet_fire(x, y):
     global bullet_state
     bullet_state = "fire"
@@ -65,31 +66,35 @@ while running:
     screen.blit(background, (0, 0))
 
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
             running = False
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                print("Left arroe pressed")
                 playerX_change = -0.3
+
             if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                print("Right key pressed")
                 playerX_change = 0.3
+
             if event.key == pygame.K_SPACE:
-                print("Right key pressed")
                 bulletX = playerX
                 bullet_fire(bulletX, bulletY)
-        if event.type == pygame.KEYUP:
 
+        if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                print("KEY Released")
                 playerX_change = 0
                 playerY_change = 0
+
+    # Player Movement
     playerX += playerX_change
+
     if playerX <= 0:
         playerX = 0
     elif playerX >= 736:
         playerX = 736
 
+    # Enemy Movement
     enemyX += enemyX_change
     if enemyX <= 0:
         enemyX_change = 0.3
