@@ -71,20 +71,22 @@ while running:
             running = False
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+            if event.key in [pygame.K_LEFT, pygame.K_a]:
                 playerX_change = -0.3
 
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+            if event.key in [pygame.K_RIGHT, pygame.K_d]:
                 playerX_change = 0.3
 
             if event.key == pygame.K_SPACE:
                 bulletX = playerX
                 bullet_fire(bulletX, bulletY)
 
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0
-                playerY_change = 0
+        if event.type == pygame.KEYUP and event.key in [
+            pygame.K_LEFT,
+            pygame.K_RIGHT,
+        ]:
+            playerX_change = 0
+            playerY_change = 0
 
     # Player Movement
     playerX += playerX_change
